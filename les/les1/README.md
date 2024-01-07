@@ -87,7 +87,7 @@ POM-файл является основой для настройки прое�
 - ~~~
   mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
   ~~~
-  Здесь __com.mycompany.app__ — это пример groupId, а my-app — artifactId вашего
+  Здесь __com.mycompany.app__ — это пример __groupId__, а __my-app__ — __artifactId__ вашего
   проекта. Вы можете заменить их на свои значения. После выполнения команды
   Maven создаст новую директорию с именем my-app, содержащую структуру
   проекта.
