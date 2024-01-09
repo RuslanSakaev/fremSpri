@@ -94,7 +94,7 @@ public class Person {
     }
 }
 ~~~
-### 4. Используя библиотеку commons-lang3 для генерации методов toString, equals и hashCode.
+### 4. Использую библиотеку commons-lang3 для генерации методов toString, equals и hashCode.
 Для этого в класс Person вносим следующие изменения:
 ```java
 import org.apache.commons.lang3.builder.ToStringBuilder;
