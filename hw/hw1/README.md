@@ -45,7 +45,7 @@ mvn archetype:generate -DgroupId=ru.sakaevrs -DartifactId="myHWprodj" -Darchetyp
 </dependencies>
 ```
 ### 3. Создаю класс Person с полями firstName, lastName и age в папке __src\main\java\ru\sakaevrs__:
-~~~
+~~~java
 public class Person {
     private String firstName;
     private String lastName;
