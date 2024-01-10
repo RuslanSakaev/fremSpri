@@ -1,4 +1,4 @@
-package ru.sakaevrs;
+package ru.sakaevrs.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
