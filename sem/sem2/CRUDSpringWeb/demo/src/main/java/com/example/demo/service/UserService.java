@@ -29,4 +29,12 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User update(User user) {
+        return userRepository.update(user);
+    }
+
+    public User getOne(int id) {
+        return userRepository.getOne(id);
+    }
+
 }

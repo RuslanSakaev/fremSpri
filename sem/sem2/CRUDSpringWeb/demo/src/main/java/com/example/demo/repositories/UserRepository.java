@@ -41,4 +41,21 @@ public class UserRepository {
         jdbc.update(sql, id);
     }
 
+    public User update(User user) {
+        String sql = "UPDATE userTable SET firstName = ?, lastName = ? WHERE id = ?";
+        jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getId());
+        return user;
+    }
+
+    public User getOne(int id) {
+        String sql = "SELECT * FROM userTable WHERE id = ?";
+        return jdbc.queryForObject(sql, new Object[]{id}, (r, i) -> {
+            User user = new User();
+            user.setId(r.getInt("id"));
+            user.setFirstName(r.getString("firstName"));
+            user.setLastName(r.getString("lastName"));
+            return user;
+        });
+    }
+
 }
