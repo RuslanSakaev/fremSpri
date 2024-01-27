@@ -9,12 +9,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty
 
     private String name;
-    @JsonProperty
     private int age;
-    @JsonProperty
     private String email;
 
     public User() {

@@ -3,6 +3,7 @@ package com.example.sem3HomeTask.controllers;
 import com.example.sem3HomeTask.domain.User;
 import com.example.sem3HomeTask.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,12 @@ public class UserController {
         System.out.println("Received user: " + user); // логирование
         service.registerUser(user);
         return "User added from body!";
+    }
+
+    @PostMapping("/user/body")
+    public ResponseEntity<?> addUser(@RequestBody User user) {
+        System.out.println("Received user: " + user.getName() + ", " + user.getAge() + ", " + user.getEmail()); // логирование
+        service.processRegistration(user.getName(), user.getAge(), user.getEmail());
+        return ResponseEntity.ok("User added");
     }
 }
