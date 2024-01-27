@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/reg.css">
+    <title>Main</title>
+</head>
+
+<body class="text-center login-background">
+
+<h1 class="display-2 h1-title text-light">Admin panel v1.2</h1>
+<main class="form-signin reg-form_center">
+    <form action="/check-login">
+        <h1 class="h3 mb-3 fw-normal text-light">Пожалуйста, войдите</h1>
+
+        <div class="form-floating reg-form" >
+            <input name="email" type="email" class="form-control" id="floatingInput" placeholder="email@mail.ru">
+            <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating reg-form">
+            <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Пароль</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> <span class="text-light">Запомнить меня</span>
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+    </form>
+</main>
+
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="025369d4-9fd1-4133-9eac-ba7363a487ac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/java/com/example/SpringDataTest/SpringDataTestApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/java/com/example/SpringDataTest/controllers/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/java/com/example/SpringDataTest/models/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/java/com/example/SpringDataTest/repository/UserRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/java/com/example/SpringDataTest/services/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/resources/templates/create-user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SpringDataTest/src/test/java/com/example/SpringDataTest/SpringDataTestApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2awxjXNJmlnsgVV19gdWpeW47Jh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/it/SpringProjects/Scrum-board"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\it\SpringProjects" />
+      <recent name="D:\Road to developer\IT_WorkPlace\OriginWorkPlace\SpringProjects" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-8336523bb0d9-b81783ad" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="025369d4-9fd1-4133-9eac-ba7363a487ac" name="Changes" comment="" />
+      <created>1705243577558</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705243577558</updated>
+    </task>
+    <servers />
+  </component>
+</project>
