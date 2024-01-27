@@ -51,12 +51,6 @@ e) Проверка среднего арифметического - запро
 - - Буду использовать внедрение зависимостей через конструктор, так как это повышает тестируемость кода и улучшает управление зависимостями.
 - - Класс RegistrationService будет выглядеть так:
 ```java
-package com.example.sem3HomeTask.services;
-
-import com.example.sem3HomeTask.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class RegistrationService {
 
@@ -128,12 +122,6 @@ public class RegistrationService {
 - - - Использовать NotificationService для вывода сообщения в консоль.
 - - Таким образом метод processRegistration в классе RegistrationService будет выглядеть так:
 ```java
-package com.example.sem3HomeTask.services;
-
-import com.example.sem3HomeTask.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class RegistrationService {
 
@@ -245,7 +233,7 @@ Services
 - Конфигурация H2 Database.
 - - -
 #### Задание со звездочкой
-1) В классе UserController добавить обработчик userAddFromParam извлекающий данные для создания пользователя из параметров HTTP запроса^
+1) В классе UserController добавить обработчик userAddFromParam извлекающий данные для создания пользователя из параметров HTTP запроса
 - Добавим метод userAddFromParam. 
 - Нужно определить новый метод с аннотацией @PostMapping и использовать аннотации @RequestParam для извлечения параметров запроса:
 ```java
@@ -256,19 +244,13 @@ Services
      * @param email Электронная почта пользователя
      * @return Сообщение об успешном добавлении пользователя
      */
-    @PostMapping("/param")
-    public String userAddFromParam(@RequestParam String name, 
-                                   @RequestParam int age, 
-                                   @RequestParam String email) {
-        User newUser = new User();
-        newUser.setName(name);
-        newUser.setAge(age);
-        newUser.setEmail(email);
-
-        service.getDataProcessingService().getRepository().getUsers().add(newUser);
-
-        return "User added from parameters!";
-    }
+@PostMapping("/param")
+public String userAddFromParam(@RequestParam String name,
+                               @RequestParam int age,
+                               @RequestParam String email) {
+    service.processRegistration(name, age, email);
+    return "User added from parameters!";
+}
 ```
 - Метод userAddFromParam помечен аннотацией @PostMapping и использует аннотации @RequestParam для извлечения параметров запроса (name, age, email).
 - Создается новый пользователь из полученных параметров и добавляется в репозиторий.
@@ -290,14 +272,6 @@ public class User {
 ```
 - b) Удаление старого List<User> репозитория:
 ```java
-package com.example.sem3HomeTask.repository;
-
-import com.example.sem3HomeTask.domain.User;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class UserRepository {
 
@@ -322,16 +296,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 - d) Обновление сервисов DataProcessingService и других, которые используют UserRepository, чтобы они работали с новым интерфейсом JPA:
 - - такие методы как addUserToList, больше не нужны, так как JPA-репозиторий предоставляет встроенные методы для таких операций.
 ```java
-package com.example.sem3HomeTask.services;
-
-import com.example.sem3HomeTask.domain.User;
-import com.example.sem3HomeTask.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class DataProcessingService {
 
@@ -347,8 +311,7 @@ public class DataProcessingService {
     }
 
     public List<User> filterUsersByAge(int age) {
-        // Предполагая, что у вас есть пользовательский запрос в UserRepository для этого
-        // Если нет, вы можете использовать API потоков, как показано здесь
+        // будем использовать API потоков
         return repository.findAll().stream()
                 .filter(user -> user.getAge() > age)
                 .collect(Collectors.toList());
@@ -361,9 +324,12 @@ public class DataProcessingService {
                 .orElse(0);
     }
 
-    public void addUser(User user) {
+    public void saveUser(User user) {
         repository.save(user);
     }
 }
-
 ```
+- Отправляем параметризованный запрос: 
+- ![6](img/6.bmp)
+- По запросу http://localhost:8080/user получаем ответ:
+- ![7](img/7.bmp)

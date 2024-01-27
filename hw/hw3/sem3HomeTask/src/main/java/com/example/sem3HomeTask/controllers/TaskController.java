@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/tasks") // базовый URL для контроллера
 public class TaskController {
 
     @Autowired

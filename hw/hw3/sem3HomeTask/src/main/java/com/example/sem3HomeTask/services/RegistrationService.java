@@ -11,6 +11,12 @@ public class RegistrationService {
     private final UserService userService;
     private final NotificationService notificationService;
 
+    /**
+     * Конструктор для внедрения зависимостей.
+     * @param dataProcessingService служба для обработки данных пользователей
+     * @param userService служба для создания новых пользователей
+     * @param notificationService служба для отправки уведомлений
+     */
     @Autowired
     public RegistrationService(DataProcessingService dataProcessingService,
                                UserService userService,
@@ -27,10 +33,10 @@ public class RegistrationService {
      * @param email Электронная почта пользователя
      */
     public void processRegistration(String name, int age, String email) {
-        User newUser = new User(name, age, email);
-        registerUser(newUser);
+        User newUser = new User(name, age, email); // Создание нового пользователя
+        registerUser(newUser); // Добавление пользователя в репозиторий
     }
-
+    // Отправка уведомления
     public void registerUser(User user) {
         userService.saveUser(user);
         String notificationMessage = "New user registered: " + user.getName();
