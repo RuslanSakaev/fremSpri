@@ -19,6 +19,10 @@ public class DataProcessingService {
     @Autowired
     private UserRepository repository;
 
+    public List<User> getAllUsers() {
+        return repository.findAll();
+    }
+
 
     public List<User> sortUsersByAge(List<User> users) {
         return users.stream()
@@ -39,8 +43,7 @@ public class DataProcessingService {
                 .orElse(0);
     }
 
-    public void  addUserToList(User user)
-    {
-        repository.getUsers().add(user);
+    public void saveUser(User user) {
+        repository.save(user);
     }
 }

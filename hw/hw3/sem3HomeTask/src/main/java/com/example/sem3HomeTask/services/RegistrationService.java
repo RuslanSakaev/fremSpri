@@ -27,14 +27,13 @@ public class RegistrationService {
      * @param email Электронная почта пользователя
      */
     public void processRegistration(String name, int age, String email) {
-        // Создание нового пользователя
-        User newUser = userService.createUser(name, age, email);
+        User newUser = new User(name, age, email);
+        registerUser(newUser);
+    }
 
-        // Добавление пользователя в репозиторий
-        dataProcessingService.addUserToList(newUser);
-
-        // Отправка уведомления
-        String notificationMessage = "New user registered: " + newUser.getName() + ", Age: " + newUser.getAge() + ", Email: " + newUser.getEmail();
+    public void registerUser(User user) {
+        userService.saveUser(user);
+        String notificationMessage = "New user registered: " + user.getName();
         notificationService.sendNotification(notificationMessage);
     }
 

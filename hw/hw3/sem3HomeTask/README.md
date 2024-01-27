@@ -245,5 +245,125 @@ Services
 - Конфигурация H2 Database.
 - - -
 #### Задание со звездочкой
-1) В классе UserController добавить обработчик userAddFromParam извлекающий данные для создания пользователя из параметров HTTP запроса
+1) В классе UserController добавить обработчик userAddFromParam извлекающий данные для создания пользователя из параметров HTTP запроса^
+- Добавим метод userAddFromParam. 
+- Нужно определить новый метод с аннотацией @PostMapping и использовать аннотации @RequestParam для извлечения параметров запроса:
+```java
+/**
+     * Добавляет пользователя из параметров HTTP запроса.
+     * @param name Имя пользователя
+     * @param age Возраст пользователя
+     * @param email Электронная почта пользователя
+     * @return Сообщение об успешном добавлении пользователя
+     */
+    @PostMapping("/param")
+    public String userAddFromParam(@RequestParam String name, 
+                                   @RequestParam int age, 
+                                   @RequestParam String email) {
+        User newUser = new User();
+        newUser.setName(name);
+        newUser.setAge(age);
+        newUser.setEmail(email);
+
+        service.getDataProcessingService().getRepository().getUsers().add(newUser);
+
+        return "User added from parameters!";
+    }
+```
+- Метод userAddFromParam помечен аннотацией @PostMapping и использует аннотации @RequestParam для извлечения параметров запроса (name, age, email).
+- Создается новый пользователь из полученных параметров и добавляется в репозиторий.
+- Метод возвращает сообщение об успешном добавлении пользователя.
+- - В поле метода запроса выбираем POST (в Postman)
+- - Вводим ключи и значения для параметров name, age, и email. 
+- - Например, ключ: name, значение: Alice, age:30, email:alice@example.com (http://localhost:8080/user/param?name=Alice&age=30&email=alice@example.com)
 2) Перенести репозиторий проекта с List<User> на базу данных H2
+- Перенос репозитория проекта с List<User> на базу данных H2 включает несколько ключевых шагов, а именно:
+- a) Создание сущности User:
+```java
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    ...
+}
+```
+- b) Удаление старого List<User> репозитория:
+```java
+package com.example.sem3HomeTask.repository;
+
+import com.example.sem3HomeTask.domain.User;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class UserRepository {
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    private List<User> users = new ArrayList<>();
+
+}
+```
+- c) Создайте интерфейс UserRepository, расширяющий JpaRepository:
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+    
+}
+```
+- d) Обновление сервисов DataProcessingService и других, которые используют UserRepository, чтобы они работали с новым интерфейсом JPA:
+- - такие методы как addUserToList, больше не нужны, так как JPA-репозиторий предоставляет встроенные методы для таких операций.
+```java
+package com.example.sem3HomeTask.services;
+
+import com.example.sem3HomeTask.domain.User;
+import com.example.sem3HomeTask.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class DataProcessingService {
+
+    @Autowired
+    private UserRepository repository;
+
+    // Методы getUsers и setUsers больше не нужны
+
+    public List<User> sortUsersByAge() {
+        return repository.findAll().stream()
+                .sorted(Comparator.comparing(User::getAge))
+                .collect(Collectors.toList());
+    }
+
+    public List<User> filterUsersByAge(int age) {
+        // Предполагая, что у вас есть пользовательский запрос в UserRepository для этого
+        // Если нет, вы можете использовать API потоков, как показано здесь
+        return repository.findAll().stream()
+                .filter(user -> user.getAge() > age)
+                .collect(Collectors.toList());
+    }
+
+    public double calculateAverageAge() {
+        return repository.findAll().stream()
+                .mapToInt(User::getAge)
+                .average()
+                .orElse(0);
+    }
+
+    public void addUser(User user) {
+        repository.save(user);
+    }
+}
+
+```

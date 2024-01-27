@@ -11,9 +11,17 @@ import java.util.List;
 @RequestMapping("/user")//localhost:8080/user
 public class UserController {
 
-
     @Autowired
     private RegistrationService service;
+
+    /**
+     * Получает список пользователей.
+     * @return Список пользователей
+     */
+    @GetMapping
+    public List<User> userList() {
+        return service.getDataProcessingService().getAllUsers();
+    }
 
     /**
      * Добавляет пользователя, используя данные, переданные через параметры HTTP-запроса.
@@ -22,29 +30,18 @@ public class UserController {
      * @param email Электронная почта пользователя.
      * @return Сообщение о добавлении пользователя.
      */
-    @PostMapping("/add")
-    public String userAddFromParam(
-            @RequestParam("name") String name,
-            @RequestParam("age") int age,
-            @RequestParam("email") String email) {
-        User newUser = new User();
-        newUser.setName(name);
-        newUser.setAge(age);
-        newUser.setEmail(email);
-
-        // Добавляем пользователя через сервис
-        service.getDataProcessingService().addUserToList(newUser);
-
-        return "User added with name: " + name;
+    @PostMapping("/param")
+    public String userAddFromParam(@RequestParam String name,
+                                   @RequestParam int age,
+                                   @RequestParam String email) {
+        service.processRegistration(name, age, email);
+        return "User added from parameters!";
     }
 
-    @GetMapping
-    public List<User> userList() { return service.getDataProcessingService().getRepository().getUsers(); }
-
     @PostMapping("/body")
-    public String userAddFromBody(@RequestBody User user)
-    {
-        service.getDataProcessingService().getRepository().getUsers().add(user);
+    public String userAddFromBody(@RequestBody User user) {
+        System.out.println("Received user: " + user); // логирование
+        service.registerUser(user);
         return "User added from body!";
     }
 }
