@@ -42,6 +42,7 @@ public class UserController {
     @PostMapping("/body")
     public String userAddFromBody(@RequestBody User user) {
         System.out.println("Received user: " + user); // логирование
+        System.out.println("Name: " + user.getName() + ", Age: " + user.getAge() + ", Email: " + user.getEmail()); // Дополнительное логирование
         service.registerUser(user);
         return "User added from body!";
     }
