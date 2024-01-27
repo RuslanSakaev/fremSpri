@@ -1,27 +1,29 @@
 package com.example.sem3HomeTask.services;
 
 import com.example.sem3HomeTask.domain.User;
-import com.example.sem3HomeTask.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    private final NotificationService notificationService;
-    private final UserRepository userRepository;
 
-    @Autowired
-    public UserService(NotificationService notificationService, UserRepository userRepository) {
+   // @Autowired
+    private NotificationService notificationService;
+
+    // Внедрение зависимости через конструктор
+    public UserService(NotificationService notificationService) {
         this.notificationService = notificationService;
-        this.userRepository = userRepository;
     }
 
-    public void addUser(User user) {
-        // Добавление пользователя в репозиторий
-        userRepository.getUsers().add(user);
+    public User createUser(String name, int age, String email) {
+        User user = new User();
+        user.setName(name);
+        user.setAge(age);
+        user.setEmail(email);
 
-        // Отправка уведомления о добавлении нового пользователя
-        notificationService.notifyUser(user, "Вы успешно зарегистрированы!");
+        // Отправляем уведомление о создании нового пользователя
+        notificationService.notifyUser(user);
+
+        return user;
     }
-
 }

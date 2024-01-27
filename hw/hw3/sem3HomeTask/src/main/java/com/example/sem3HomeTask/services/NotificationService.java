@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
 
-    public void notifyUser(User user, String message) {
-        // Вывод пользовательского сообщения вместе с информацией о пользователе
-        System.out.println("Уведомление для пользователя: " + user.getName() +
-                ". Сообщение: " + message);
+    public void notifyUser(User user) {
+        System.out.println("A new user has been created: " + user.getName());
+    }
+
+    public void sendNotification(String s) {
+        System.out.println(s);
     }
 }
-

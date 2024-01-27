@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
+
     @Autowired
     private DataProcessingService service;
 
@@ -24,21 +26,31 @@ public class TaskController {
         tasks.add("sort");
         tasks.add("filter");
         tasks.add("calc");
-        return tasks;
+        return  tasks;
     }
 
-    @GetMapping("/sort")
-    public List<User> sortUserByAge(){
+    @GetMapping("/sort")//localhost:8080/tasks/sort
+    public List<User> sortUsersByAge()
+    {
         return service.sortUsersByAge(service.getRepository().getUsers());
     }
 
+    /**
+     * Фильтрует пользователей по возрасту.
+     * @param age Возраст для фильтрации
+     * @return Список пользователей старше указанного возраста
+     */
     @GetMapping("/filter/{age}")
     public List<User> filterUsersByAge(@PathVariable int age) {
-        return service.filterUsersByAge(age);
+        return service.filterUsersByAge(service.getRepository().getUsers(), age);
     }
 
+    /**
+     * Вычисляет средний возраст пользователей.
+     * @return Средний возраст
+     */
     @GetMapping("/calc")
     public double calculateAverageAge() {
-        return service.calculateAverageAge();
+        return service.calculateAverageAge(service.getRepository().getUsers());
     }
 }
