@@ -1,0 +1,82 @@
+/* Общий стиль для центрирования текста и окрашивания фона */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Цвет фона страницы */
+}
+
+/* Стиль для заголовков (h1, h2, h3 и т.д.) */
+h1, h2, h3 {
+    color: #333; /* Цвет текста */
+}
+
+/* Стиль для окрашивания строк в разные цвета */
+body:nth-child(odd) {
+    background-color: #e0e0e0; /* Цвет фона для нечетных строк */
+}
+
+body:nth-child(even) {
+    background-color: #d0d0d0; /* Цвет фона для четных строк */
+}
+
+/* Стиль для кнопок в оранжевом овале */
+input[type="submit"] {
+    background-color: #FFA500; /* Оранжевый цвет */
+    color: #FFFFFF; /* Белый текст */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+/* Стиль для текста в таблицах на белом фоне */
+table {
+    background-color: #FFFFFF; /* Белый фон таблицы */
+    color: #001F3F; /* Темно-синий текст */
+}
+
+/* Стиль для надписи "Users" на зеленом фоне */
+h2 {
+    background-color: #00FF00; /* Зеленый фон */
+    padding: 10px;
+}
+
+/* Стиль для Id, First name, Last name */
+th {
+    background-color: #0000FF; /* Синий фон */
+    color: #FFFFFF; /* Белый текст */
+    padding: 10px;
+    border: 2px solid #0000FF; /* Синее обрамление */
+}
+
+/* Стиль для ячеек таблицы с белым фоном и темно-синим текстом */
+td {
+    background-color: #FFFFFF; /* Белый фон */
+    color: #000033; /* Темно-синий текст */
+    padding: 10px;
+    border: 2px solid #0000FF; /* Синее обрамление */
+}
+
+/* Стиль для ссылок Edit и Delete в оранжевом овале */
+a {
+    display: inline-block;
+    padding: 10px;
+    background-color: #FFA500; /* Оранжевый фон */
+    border-radius: 20px; /* Скругление углов */
+    color: #FFFFFF; /* Белый текст */
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+/* Стиль для кнопки Create user в оранжевом овале */
+input[type="submit"] {
+    display: inline-block;
+    padding: 10px;
+    background-color: #FFA500; /* Оранжевый фон */
+    border-radius: 20px; /* Скругление углов */
+    color: #FFFFFF; /* Белый текст */
+    border: none;
+    cursor: pointer;
+}

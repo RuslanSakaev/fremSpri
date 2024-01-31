@@ -7,34 +7,39 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Сервис для управления операциями с пользователями
 @Service
 public class UserService {
     private final UserRepository userRepository;
 
-
+    // Конструктор с внедрением зависимости UserRepository
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAll(){
+    // Получение списка всех пользователей
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User saveUser(User user){
+    // Сохранение пользователя
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
+    // Удаление пользователя по идентификатору
     public void deleteById(int id) {
         userRepository.deleteById(id);
     }
 
+    // Обновление данных пользователя
     public User update(User user) {
         return userRepository.update(user);
     }
 
+    // Получение пользователя по идентификатору
     public User getOne(int id) {
         return userRepository.getOne(id);
     }
-
 }
