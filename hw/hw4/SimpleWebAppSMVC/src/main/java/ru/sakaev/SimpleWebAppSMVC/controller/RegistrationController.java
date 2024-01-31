@@ -14,20 +14,23 @@ public class RegistrationController {
 
     private final UserService userService;
 
+    // Инъекция зависимости UserService через конструктор
     @Autowired
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
 
+    // Обработчик GET-запроса для "/registration"
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
-        return "registration";
+        model.addAttribute("user", new User()); // Добавление нового пользователя в модель
+        return "registration"; // Возвращение имени представления
     }
 
+    // Обработчик POST-запроса для "/register"
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUser(@ModelAttribute User user) {
-        userService.registerUser(user);
-        return "registration-success";
+        userService.registerUser(user); // Регистрация пользователя через сервис
+        return "registration-success"; // Возвращение имени представления
     }
 }
