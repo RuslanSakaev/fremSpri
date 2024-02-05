@@ -48,6 +48,10 @@ public class TaskService {
 
     public void deleteTask(Long id) {
         // Метод для удаления задачи по её идентификатору.
-        taskRepository.deleteById(id);
+        try {
+            taskRepository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println("Error deleting task with id " + id + ": " + e.getMessage());
+        }
     }
 }
