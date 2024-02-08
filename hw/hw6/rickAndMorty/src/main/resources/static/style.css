@@ -1,0 +1,163 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+main {
+    margin: 20px;
+}
+
+.character {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.character img {
+    border-radius: 50%;
+}
+
+.character a {
+    text-decoration: none;
+    color: #333;
+}
+
+.character a:hover {
+    color: #666;
+}
+.characters-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.character-card {
+  width: 200px; /* Ширина карточки */
+  height: 300px; /* Высота карточки */
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+main {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+.character {
+    text-align: center;
+}
+
+.character img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.character a {
+    text-decoration: none;
+    color: #333;
+}
+
+.character a:hover {
+    color: #666;
+}
+
+.character {
+    text-align: center;
+}
+
+.character img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5mm; /* Добавляем отступ в 3 миллиметра снизу */
+}
+
+.character a {
+    text-decoration: none;
+    color: #333;
+}
+
+.character a:hover {
+    color: #666;
+}
+.character {
+    text-align: center;
+}
+
+.character img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 3mm;
+    display: block; /* Чтобы применить vertical-align */
+    margin: 0 auto; /* Чтобы центрировать картинку */
+}
+
+.character span {
+    display: inline-block;
+    vertical-align: top; /* Выравниваем текст по верхнему краю картинки */
+}
+
+.character a {
+    text-decoration: none;
+    color: #333;
+}
+
+.character a:hover {
+    color: #666;
+}
