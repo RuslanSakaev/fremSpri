@@ -14,7 +14,7 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
 
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
-        // Получите код ошибки
+        // Получим код ошибки
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
         // Обработка различных кодов ошибок
@@ -22,10 +22,10 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
             Integer statusCode = Integer.valueOf(status.toString());
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 // Обработка ошибки 404 (страница не найдена)
-                return "error-404"; // Имя вашего шаблона для страницы 404
+                return "error-404"; // Имя шаблона для страницы 404
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
                 // Обработка внутренней ошибки сервера (ошибка 500)
-                return "error-500"; // Имя вашего шаблона для страницы 500
+                return "error-500"; // Имя шаблона для страницы 500
             }
         }
         // Возврат шаблона по умолчанию для других ошибок
