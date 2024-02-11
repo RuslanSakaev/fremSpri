@@ -1,0 +1,97 @@
+2024-02-11 21:59:24,972 [main] INFO  ru.sakaev.HwsecurityApplication - Starting HwsecurityApplication using Java 21.0.2 on DESKTOP-QOSOOA6 with PID 9036 (C:\workingdir\fremSpri\hw\hw7\hwsecurity\target\classes started by Rus in C:\workingdir\fremSpri\hw\hw7\hwsecurity)
+2024-02-11 21:59:24,984 [main] INFO  ru.sakaev.HwsecurityApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-11 21:59:29,920 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-02-11 21:59:29,952 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-11 21:59:29,963 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-02-11 21:59:29,964 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2024-02-11 21:59:30,449 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-02-11 21:59:30,451 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5260 ms
+2024-02-11 21:59:31,153 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 21:59:31,375 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 21:59:31,513 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: user
+2024-02-11 21:59:31,513 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: admin
+2024-02-11 21:59:31,715 [main] INFO  ru.sakaev.config.SecurityConfig - Configuring HttpSecurity...
+2024-02-11 21:59:31,965 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3bd6ba24, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58f437b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@37b52340, org.springframework.security.web.header.HeaderWriterFilter@45cec376, org.springframework.security.web.csrf.CsrfFilter@1b1c538d, org.springframework.security.web.authentication.logout.LogoutFilter@7c847072, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1d12e953, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f4e40d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3650d4fc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20f6f88c, org.springframework.security.web.session.SessionManagementFilter@298f0a0b, org.springframework.security.web.access.ExceptionTranslationFilter@6e7c351d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ab4a5b]
+2024-02-11 21:59:33,216 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-02-11 21:59:33,295 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-11 21:59:33,323 [main] INFO  ru.sakaev.HwsecurityApplication - Started HwsecurityApplication in 9.974 seconds (JVM running for 12.318)
+2024-02-11 22:01:11,189 [main] INFO  ru.sakaev.HwsecurityApplication - Starting HwsecurityApplication using Java 21.0.2 on DESKTOP-QOSOOA6 with PID 11776 (C:\workingdir\fremSpri\hw\hw7\hwsecurity\target\classes started by Rus in C:\workingdir\fremSpri\hw\hw7\hwsecurity)
+2024-02-11 22:01:11,244 [main] INFO  ru.sakaev.HwsecurityApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-11 22:01:18,125 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-02-11 22:01:18,190 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:01:18,203 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-02-11 22:01:18,204 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2024-02-11 22:01:18,688 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-02-11 22:01:18,690 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7090 ms
+2024-02-11 22:01:19,749 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:01:20,011 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:01:20,183 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: user
+2024-02-11 22:01:20,183 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: admin
+2024-02-11 22:01:20,410 [main] INFO  ru.sakaev.config.SecurityConfig - Configuring HttpSecurity...
+2024-02-11 22:01:20,672 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@44065156, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3791f50e, org.springframework.security.web.context.SecurityContextPersistenceFilter@29a98d9f, org.springframework.security.web.header.HeaderWriterFilter@6325f352, org.springframework.security.web.csrf.CsrfFilter@512d6e60, org.springframework.security.web.authentication.logout.LogoutFilter@188ac8a3, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3bbf6abe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@544e8149, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@46aa712c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@574b7f4a, org.springframework.security.web.session.SessionManagementFilter@6cbd0674, org.springframework.security.web.access.ExceptionTranslationFilter@1b1c538d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7f1ef916]
+2024-02-11 22:01:22,367 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:01:22,455 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-11 22:01:22,492 [main] INFO  ru.sakaev.HwsecurityApplication - Started HwsecurityApplication in 13.013 seconds (JVM running for 15.274)
+2024-02-11 22:01:56,343 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11 22:01:56,344 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-02-11 22:01:56,348 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2024-02-11 22:07:20,526 [main] INFO  ru.sakaev.HwsecurityApplication - Starting HwsecurityApplication using Java 21.0.2 on DESKTOP-QOSOOA6 with PID 3352 (C:\workingdir\fremSpri\hw\hw7\hwsecurity\target\classes started by Rus in C:\workingdir\fremSpri\hw\hw7\hwsecurity)
+2024-02-11 22:07:20,539 [main] INFO  ru.sakaev.HwsecurityApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-11 22:07:26,148 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-02-11 22:07:26,185 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:07:26,196 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-02-11 22:07:26,196 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2024-02-11 22:07:26,660 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-02-11 22:07:26,660 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5834 ms
+2024-02-11 22:07:27,518 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:07:27,765 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:07:27,901 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: user
+2024-02-11 22:07:27,901 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: admin
+2024-02-11 22:07:28,121 [main] INFO  ru.sakaev.config.SecurityConfig - Configuring HttpSecurity...
+2024-02-11 22:07:28,467 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@354e7004, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22ebccb9, org.springframework.security.web.context.SecurityContextPersistenceFilter@459f703f, org.springframework.security.web.header.HeaderWriterFilter@37b52340, org.springframework.security.web.csrf.CsrfFilter@55d58825, org.springframework.security.web.authentication.logout.LogoutFilter@71e4b308, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@26c89563, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3650d4fc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10c72a6f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5875de6a, org.springframework.security.web.session.SessionManagementFilter@2f4e40d7, org.springframework.security.web.access.ExceptionTranslationFilter@2b960a7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1d12e953]
+2024-02-11 22:07:29,775 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:07:29,876 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-11 22:07:29,910 [main] INFO  ru.sakaev.HwsecurityApplication - Started HwsecurityApplication in 11.445 seconds (JVM running for 14.2)
+2024-02-11 22:08:05,620 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11 22:08:05,621 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-02-11 22:08:05,624 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2024-02-11 22:21:22,265 [main] INFO  ru.sakaev.HwsecurityApplication - Starting HwsecurityApplication using Java 21.0.2 on DESKTOP-QOSOOA6 with PID 788 (C:\workingdir\fremSpri\hw\hw7\hwsecurity\target\classes started by Rus in C:\workingdir\fremSpri\hw\hw7\hwsecurity)
+2024-02-11 22:21:22,277 [main] INFO  ru.sakaev.HwsecurityApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-11 22:21:29,357 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-02-11 22:21:29,418 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:21:29,429 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-02-11 22:21:29,430 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2024-02-11 22:21:30,138 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-02-11 22:21:30,138 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7614 ms
+2024-02-11 22:21:31,160 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:21:31,717 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:21:31,919 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: user
+2024-02-11 22:21:31,920 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: admin
+2024-02-11 22:21:32,140 [main] INFO  ru.sakaev.config.SecurityConfig - Configuring HttpSecurity...
+2024-02-11 22:21:32,376 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1fdca564, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@43f9dd56, org.springframework.security.web.context.SecurityContextPersistenceFilter@7412ed6b, org.springframework.security.web.header.HeaderWriterFilter@1a96d94c, org.springframework.security.web.csrf.CsrfFilter@445bb139, org.springframework.security.web.authentication.logout.LogoutFilter@7e446d92, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@44ed0a8f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b4a0aef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31dfc6f5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d12e953, org.springframework.security.web.session.SessionManagementFilter@ae202c6, org.springframework.security.web.access.ExceptionTranslationFilter@544e8149, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@358ab600]
+2024-02-11 22:21:33,643 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:21:33,755 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-11 22:21:33,800 [main] INFO  ru.sakaev.HwsecurityApplication - Started HwsecurityApplication in 13.323 seconds (JVM running for 16.039)
+2024-02-11 22:21:38,396 [http-nio-8080-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11 22:21:38,397 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-02-11 22:21:38,399 [http-nio-8080-exec-3] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-02-11 22:36:52,546 [main] INFO  ru.sakaev.HwsecurityApplication - Starting HwsecurityApplication using Java 21.0.2 on DESKTOP-QOSOOA6 with PID 12856 (C:\workingdir\fremSpri\hw\hw7\hwsecurity\target\classes started by Rus in C:\workingdir\fremSpri\hw\hw7\hwsecurity)
+2024-02-11 22:36:52,566 [main] INFO  ru.sakaev.HwsecurityApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-11 22:36:58,974 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-02-11 22:36:59,045 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:36:59,057 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-02-11 22:36:59,058 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2024-02-11 22:36:59,527 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-02-11 22:36:59,528 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6676 ms
+2024-02-11 22:37:00,413 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:37:00,743 [main] WARN  o.s.security.core.userdetails.User - User.withDefaultPasswordEncoder() is considered unsafe for production and is only intended for sample applications.
+2024-02-11 22:37:00,993 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: user
+2024-02-11 22:37:00,993 [main] INFO  ru.sakaev.config.SecurityConfig - Created user: admin
+2024-02-11 22:37:01,357 [main] INFO  ru.sakaev.config.SecurityConfig - Configuring HttpSecurity...
+2024-02-11 22:37:01,612 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2687725a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a75ec37, org.springframework.security.web.context.SecurityContextPersistenceFilter@340a8894, org.springframework.security.web.header.HeaderWriterFilter@7e5843db, org.springframework.security.web.csrf.CsrfFilter@544e8149, org.springframework.security.web.authentication.logout.LogoutFilter@5de6cf3a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4277127c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4acc5dff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57f9b467, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2c05ff9d, org.springframework.security.web.session.SessionManagementFilter@188ac8a3, org.springframework.security.web.access.ExceptionTranslationFilter@2f4e40d7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a8a4e0c]
+2024-02-11 22:37:03,124 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-02-11 22:37:03,232 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-11 22:37:03,272 [main] INFO  ru.sakaev.HwsecurityApplication - Started HwsecurityApplication in 12.593 seconds (JVM running for 16.8)
+2024-02-11 22:37:03,566 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-11 22:37:03,567 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-02-11 22:37:03,570 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
