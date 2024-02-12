@@ -21,20 +21,23 @@ import java.util.UUID;
 import static org.springframework.security.oauth2.core.AuthorizationGrantType.*;
 import static org.springframework.security.oauth2.core.ClientAuthenticationMethod.CLIENT_SECRET_BASIC;
 
+// Конфигурация сервера авторизации
 @Configuration
 public class SecurityConfig {
 
-    //Создание менеджера сведений о пользователя.
+     // Создание менеджера сведений о пользователя
+     // @param dataSource объект БД
     @Bean
     public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource){
         return new JdbcUserDetailsManager(dataSource);
     }
 
-    //Репозиторий для хранения зарегистрированных клиентов.
+    // Репозиторий для хранения зарегистрированных клиентов.
     @Bean
     public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate){
         return new JdbcRegisteredClientRepository(jdbcTemplate);
     }
+
      // Задание первоначальных настроек сервера аутентификации.
      // Создание клиента и пользователя в случае их отсутствия.
     @Bean
@@ -42,7 +45,7 @@ public class SecurityConfig {
         return args -> {
             // Создание клиента
             var clientId = "client";
-            if (registeredClientRepository.findByClientId(clientId) == null){ //объект регистрации клиентов
+            if (registeredClientRepository.findByClientId(clientId) == null){
                 registeredClientRepository.save(RegisteredClient
                         .withId(UUID.randomUUID().toString())
                         .clientId(clientId)
@@ -64,7 +67,7 @@ public class SecurityConfig {
                 );
             }
             // Создание пользователя
-            if(!userDetailsManager.userExists("user")){ //объект менеджера пользователей
+            if(!userDetailsManager.userExists("user")){
                 var userBuilder = User.builder();
                 UserDetails user = userBuilder
                         .username("user")
