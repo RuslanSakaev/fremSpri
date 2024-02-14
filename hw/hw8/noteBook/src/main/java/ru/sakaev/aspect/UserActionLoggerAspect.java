@@ -6,9 +6,20 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.sakaev.model.UserActionLog;
+import ru.sakaev.repository.UserActionLogRepository;
+
 @Aspect
 @Component
 public class UserActionLoggerAspect {
+
+    private final UserActionLogRepository userActionLogRepository; // репозиторий для работы с записями журнала действий
+
+    @Autowired
+    public UserActionLoggerAspect(UserActionLogRepository userActionLogRepository) {
+        this.userActionLogRepository = userActionLogRepository;
+    }
 
     @Pointcut("@annotation(ru.sakaev.annotation.TrackUserAction)")
     public void trackUserAction() {}
@@ -23,6 +34,9 @@ public class UserActionLoggerAspect {
             arguments = args[0].toString(); // преобразование аргументов в строку
         }
         System.out.println("User action: Method " + methodName + " in class " + className + " called with arguments: " + arguments);
+
+        UserActionLog log = new UserActionLog(methodName, className, arguments); // Создание объекта записи журнала действий пользователя
+        userActionLogRepository.save(log); // Сохранение записи в базу данных
     }
 }
 
