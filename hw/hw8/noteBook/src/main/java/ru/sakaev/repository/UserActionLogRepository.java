@@ -6,5 +6,4 @@ import ru.sakaev.model.UserActionLog;
 
 @Repository
 public interface UserActionLogRepository extends JpaRepository<UserActionLog, Long> {
-    // Дополнительные методы для работы с записями журнала действий пользователя, если необходимо
 }
