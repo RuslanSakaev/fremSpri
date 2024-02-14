@@ -31,4 +31,9 @@ public class UserActionLog {
         this.arguments = arguments;
         this.timestamp = LocalDateTime.now();
     }
+
+    @Override
+    public String toString() { // переопределим метод toString() чтобы возвращал описание действия вместо хэш-кода объекта
+        return "User action: Method " + methodName + " in class " + className + " called with arguments: " + arguments;
+    }
 }
