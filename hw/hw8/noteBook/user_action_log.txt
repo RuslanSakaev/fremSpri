@@ -1,5 +1,1 @@
 User action: Method getAllNotes in class NoteService called with arguments: 
-User action: Method getNoteById in class NoteService called with arguments: 2
-User action: Method getAllNotes in class NoteService called with arguments: 
-User action: Method deleteNoteById in class NoteService called with arguments: 2
-User action: Method getAllNotes in class NoteService called with arguments: 
