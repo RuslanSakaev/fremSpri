@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="backEndApp" />
         <module name="microServReserv" />
+        <module name="webShopEx" />
         <module name="microServPey" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="backEndApp" options="-parameters" />
       <module name="microServPey" options="-parameters" />
       <module name="microServReserv" options="-parameters" />
+      <module name="webShopEx" options="-parameters" />
     </option>
   </component>
 </project>
