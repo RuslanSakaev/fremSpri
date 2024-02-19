@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import ru.sakaev.microServReserv.model.Product;
+import ru.sakaev.microServReserv.repository.ProductRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +16,10 @@ import java.util.Objects;
 public class ProductReservationController {
 
     @Autowired
-    private RestTemplate restTemplate;
+    private ProductRepository productRepository;
 
+    @Autowired
+    private RestTemplate restTemplate;
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         // Получаем список товаров из бэкенд-приложения
@@ -24,7 +27,7 @@ public class ProductReservationController {
         List<Product> productList = Arrays.asList(Objects.requireNonNull(response.getBody()));
 
         // Сохраняем список товаров в базу данных H2 вашего микросервиса
-        // Логика сохранения в H2
+        productRepository.saveAll(productList);
 
         return ResponseEntity.ok(productList);
     }

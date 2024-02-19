@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "reservation")
 @Data
@@ -23,4 +25,8 @@ public class Reservation {
     @Setter
     @Getter
     private Long productId;
+    @Setter
+    @Getter
+    private LocalDateTime createdAt;
+
 }
