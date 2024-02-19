@@ -40,4 +40,14 @@ public class ProductController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/{productId}/release")
+    public ResponseEntity<String> releaseProductFromReservation(@PathVariable Long productId, @RequestBody int quantityToRelease) {
+        try {
+            productReservationService.releaseProduct(productId, quantityToRelease);
+            return ResponseEntity.ok("Product released from reservation successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

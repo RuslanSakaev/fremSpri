@@ -20,9 +20,6 @@ public class ProductReservationService {
     private RestTemplate restTemplate;
 
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
     private ReservationRepository reservationRepository;
 
     @Transactional
@@ -52,17 +49,22 @@ public class ProductReservationService {
 
     @Transactional
     public void releaseProduct(Long productId, int quantityToRelease) {
-        // Получаем товар из базы данных H2 по его ID
-        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+        // Получаем список резервированных товаров для данного productId
+        List<Reservation> reservations = reservationRepository.findByProductId(productId);
 
         // Проверяем, достаточно ли товара в резерве для освобождения
-        if (product.getReservedQuantity() >= quantityToRelease) {
-            // Уменьшаем количество товара в резерве
-            product.setReservedQuantity(product.getReservedQuantity() - quantityToRelease);
-            // Увеличиваем количество товара на складе
-            product.setQuantity(product.getQuantity() + quantityToRelease);
-            // Сохраняем изменения в базе данных H2
-            productRepository.save(product);
+        int totalReservedQuantity = reservations.stream().mapToInt(Reservation::getQuantity).sum();
+        if (totalReservedQuantity >= quantityToRelease) {
+            // Освобождаем товар из резерва
+            for (Reservation reservation : reservations) {
+                if (quantityToRelease <= 0) {
+                    break;
+                }
+                int quantityReleased = Math.min(reservation.getQuantity(), quantityToRelease);
+                reservation.setQuantity(reservation.getQuantity() - quantityReleased);
+                quantityToRelease -= quantityReleased;
+                reservationRepository.save(reservation);
+            }
         } else {
             throw new RuntimeException("Not enough product reserved to release");
         }
