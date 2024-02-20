@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.sakaev.microServPey.model.Client;
 
 @Repository
-public interface UserRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

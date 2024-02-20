@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
+@Data
 public class Transaction {
 
     @Id
@@ -16,5 +18,5 @@ public class Transaction {
 
     private double amount;
 
-    // Геттеры и сеттеры
+    // Конструкторы, геттеры и сеттеры Lombok сгенерированы автоматически
 }
