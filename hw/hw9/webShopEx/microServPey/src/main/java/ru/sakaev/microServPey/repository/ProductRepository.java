@@ -2,8 +2,7 @@ package ru.sakaev.microServPey.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.sakaev.microServPey.model.Wallet;
-
+import ru.sakaev.microServPey.model.Product;
 @Repository
-public interface WalletRepository extends JpaRepository<Wallet, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
