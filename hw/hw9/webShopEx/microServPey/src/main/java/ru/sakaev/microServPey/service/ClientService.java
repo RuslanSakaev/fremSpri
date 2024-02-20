@@ -1,5 +1,8 @@
 package ru.sakaev.microServPey.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import java.util.Date;
 
 @Service
 public class ClientService {
+    private static final Logger logger = LogManager.getLogger(ClientService.class);
 
     @Autowired
     private ProductService productService;
@@ -21,6 +25,7 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     public ResponseEntity<String> processProductPurchase(Long clientId, ReservationRequest reservationRequest) {
+        logger.info("Processing product purchase for client ID: {}", clientId);
         try {
             // Получаем клиента по его ID
             Client client = clientRepository.findById(clientId)
@@ -43,14 +48,19 @@ public class ClientService {
             }
 
             // Если все проверки пройдены успешно, осуществляем покупку
-            productService.completePurchase(productId, quantity);
-            client.setWalletAmount(client.getWalletAmount() - totalPrice);
-            clientRepository.save(client);
-
-            return ResponseEntity.ok("Покупка товара успешно завершена");
+            if (productService.completePurchase(productId, quantity)) {
+                // Покупка товара завершена успешно
+                client.setWalletAmount(client.getWalletAmount() - totalPrice);
+                clientRepository.save(client);
+                return ResponseEntity.ok("Покупка товара успешно завершена");
+            } else {
+                // Покупка не удалась из-за неизвестной причины
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ошибка при покупке товара: не удалось завершить покупку");
+            }
         } catch (ChangeSetPersister.NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
+            logger.error("Error processing product purchase: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ошибка при покупке товара: " + e.getMessage());
         }
     }
@@ -93,4 +103,5 @@ public class ClientService {
         client.setWalletAmount(walletAmount);
         return clientRepository.save(client);
     }
+
 }

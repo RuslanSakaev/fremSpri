@@ -30,4 +30,6 @@ public class ReservationRequest {
         this.quantity = quantity;
     }
 
+    public void setClientId(Long clientId) {
+    }
 }

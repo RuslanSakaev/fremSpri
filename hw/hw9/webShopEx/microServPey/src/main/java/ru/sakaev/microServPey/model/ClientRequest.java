@@ -22,5 +22,5 @@ public class ClientRequest {
     @Positive(message = "Сумма на счете должна быть положительной")
     private double walletAmount;
 
-    // Конструкторы будут автоматически созданы
+    // Конструкторы созданы автоматически
 }

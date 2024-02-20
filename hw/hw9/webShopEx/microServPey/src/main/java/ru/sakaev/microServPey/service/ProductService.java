@@ -24,14 +24,22 @@ public class ProductService {
     }
 
     // Метод для завершения покупки товара
-    public void completePurchase(Long productId, int quantity) {
+    public boolean completePurchase(Long productId, int quantity) {
         Product product = productRepository.findById(productId).orElse(null);
         if (product != null) {
             int newQuantity = product.getQuantity() - quantity;
-            product.setQuantity(newQuantity);
-            productRepository.save(product);
+            if (newQuantity >= 0) {
+                // Проверяем, что после покупки количество товара не станет отрицательным
+                product.setQuantity(newQuantity);
+                productRepository.save(product);
+                return true; // Успешно завершено
+            } else {
+                return false; // Недостаточно товара для покупки
+            }
         }
+        return false; // Товар не найден
     }
+
 
     public double getProductPrice(Long productId) {
         Product product = productRepository.findById(productId)
