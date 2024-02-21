@@ -9,6 +9,6 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Evgen986/shop-config.git
+          uri: https://github.com/RuslanSakaev/config.git
           basedir: file://c:/tmp/shop
           default-label: main

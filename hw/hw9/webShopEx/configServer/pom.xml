@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.maliutin.shop</groupId>
-    <artifactId>config-server</artifactId>
+    <artifactId>configServer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>config-server</name>
     <description>config-server</description>
@@ -23,7 +23,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
