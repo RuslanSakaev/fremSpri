@@ -23,14 +23,9 @@ public class ProductController {
     @Autowired
     private ClientService clientService;
 
-    // Вынесенная общая логика для покупки товара
-    private ResponseEntity<String> processProductPurchase(Long clientId, ReservationRequest reservationRequest) {
-        return clientService.processProductPurchase(clientId, reservationRequest);
-    }
-
+    // Метод для резервирования товара
     @PostMapping("/{productId}/reserve")
     public ResponseEntity<String> reserveProduct(@PathVariable Long productId, @RequestBody ReservationRequest reservationRequest) {
-        // Отправляем запрос на резервирование товара в MicroServReserv
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8083/api/products/" + productId + "/reserve", reservationRequest, String.class);
         return ResponseEntity.ok(response.getBody());
     }
@@ -49,7 +44,7 @@ public class ProductController {
         // Проверяем ответ на запрос о резервировании товара
         if (reserveResponse.getStatusCode() == HttpStatus.OK) {
             // Резервирование успешно, осуществляем покупку
-            return processProductPurchase(clientId, reservationRequest);
+            return clientService.processProductPurchase(clientId, reservationRequest);
         } else {
             // Резервирование не удалось, возвращаем сообщение об ошибке
             return ResponseEntity.status(reserveResponse.getStatusCode()).body(reserveResponse.getBody());

@@ -18,5 +18,8 @@ public class Transaction {
 
     private double amount;
 
+    public Transaction(Long clientId, Long productId, int quantity, double price) {
+    }
+
     // Конструкторы, геттеры и сеттеры Lombok сгенерированы автоматически
 }

@@ -24,10 +24,11 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    // Метод для обработки запроса на покупку товара клиентом
     public ResponseEntity<String> processProductPurchase(Long clientId, ReservationRequest reservationRequest) {
         logger.info("Processing product purchase for client ID: {}", clientId);
         try {
-            // Получаем клиента по его ID
+            // Получаем клиента по ID
             Client client = clientRepository.findById(clientId)
                     .orElseThrow(ChangeSetPersister.NotFoundException::new);
 
@@ -35,28 +36,21 @@ public class ClientService {
             Long productId = reservationRequest.getProductId();
             int quantity = reservationRequest.getQuantity();
 
-            // Проверяем наличие товара в резерве
+            // Проверяем, доступен ли товар для покупки
             boolean productReserved = productService.checkProductReservation(productId, quantity);
             if (!productReserved) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Товар с ID " + productId + " не доступен для покупки");
             }
 
-            // Проверяем достаточность средств в кошельке клиента
+            // Проверяем, достаточно ли средств в кошельке клиента
             double totalPrice = productService.getProductPrice(productId) * quantity;
             if (client.getWalletAmount() < totalPrice) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Недостаточно средств в кошельке для покупки");
             }
 
-            // Если все проверки пройдены успешно, осуществляем покупку
-            if (productService.completePurchase(productId, quantity)) {
-                // Покупка товара завершена успешно
-                client.setWalletAmount(client.getWalletAmount() - totalPrice);
-                clientRepository.save(client);
-                return ResponseEntity.ok("Покупка товара успешно завершена");
-            } else {
-                // Покупка не удалась из-за неизвестной причины
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ошибка при покупке товара: не удалось завершить покупку");
-            }
+            // Если все проверки пройдены успешно, завершаем покупку товара
+            ResponseEntity<String> purchaseResponse = productService.completePurchase(productId, quantity, clientId);
+            return ResponseEntity.ok(purchaseResponse.getBody());
         } catch (ChangeSetPersister.NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
