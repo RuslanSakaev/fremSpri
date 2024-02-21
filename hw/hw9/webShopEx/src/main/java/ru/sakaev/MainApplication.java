@@ -6,7 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import ru.sakaev.apiGateway.ApiGatewayApplication;
 import ru.sakaev.backEndApp.BackEndAppApplication;
+import ru.sakaev.eurekaServer.EurekaServerApplication;
 import ru.sakaev.microServPey.MicroServPeyApplication;
 import ru.sakaev.microServReserv.MicroServReservApplication;
 
@@ -21,6 +23,8 @@ public class MainApplication {
 		startApplication(BackEndAppApplication.class, 8081);
 		startApplication(MicroServPeyApplication.class, 8082);
 		startApplication(MicroServReservApplication.class, 8083);
+		startApplication(EurekaServerApplication.class, 8761);
+		startApplication(ApiGatewayApplication.class, 8080);
 	}
 
 	// Метод для запуска приложения в отдельном потоке с указанным портом

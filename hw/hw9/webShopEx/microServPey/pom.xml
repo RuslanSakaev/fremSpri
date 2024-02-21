@@ -15,6 +15,9 @@
 	<description>microServPeyApp</description>
 	<properties>
 		<java.version>17</java.version>
+		<spring-cloud.version>2023.0.0</spring-cloud.version>
+		<liquibase.version>4.25.1</liquibase.version>
+		<preliquibase.version>1.5.0</preliquibase.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,6 +31,14 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -50,7 +61,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
         <dependency>
             <groupId>ru.sakaev</groupId>
             <artifactId>microServReserv</artifactId>
@@ -67,7 +77,22 @@
             <artifactId>jakarta.validation-api</artifactId>
             <version>3.0.2</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-commons</artifactId>
+		</dependency>
     </dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -85,5 +110,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
