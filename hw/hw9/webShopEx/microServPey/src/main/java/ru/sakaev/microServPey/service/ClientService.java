@@ -26,7 +26,7 @@ public class ClientService {
 
     // Метод для обработки запроса на покупку товара клиентом
     public ResponseEntity<String> processProductPurchase(Long clientId, ReservationRequest reservationRequest) {
-        logger.info("Processing product purchase for client ID: {}", clientId);
+        logger.info("Обработка покупки товара для ID клиента: {}", clientId);
         try {
             // Получаем клиента по ID
             Client client = clientRepository.findById(clientId)
@@ -54,39 +54,9 @@ public class ClientService {
         } catch (ChangeSetPersister.NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
-            logger.error("Error processing product purchase: {}", e.getMessage());
+            logger.error("Ошибка при обработке покупки товара: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ошибка при покупке товара: " + e.getMessage());
         }
-    }
-
-    // Метод для получения клиента по его ID
-    public Client getClientById(Long clientId) throws ChangeSetPersister.NotFoundException {
-        return clientRepository.findById(clientId).orElseThrow(ChangeSetPersister.NotFoundException::new);
-    }
-
-    // Метод для обновления суммы в кошельке клиента
-    public void updateWalletAmount(Long clientId, double newAmount) {
-        Client client = clientRepository.findById(clientId).orElse(null);
-        if (client != null) {
-            client.setWalletAmount(newAmount);
-            clientRepository.save(client);
-        }
-    }
-
-    // Метод для обновления суммы в кошельке клиента после покупки товара
-    public void updateWalletAmountAfterPurchase(Long clientId, double totalPrice) throws ChangeSetPersister.NotFoundException {
-        // Получаем текущую сумму в кошельке клиента
-        Client client = getClientById(clientId);
-        if (client == null) {
-            throw new IllegalArgumentException("Клиент с ID " + clientId + " не найден");
-        }
-
-        // Вычисляем новую сумму в кошельке
-        double currentWalletAmount = client.getWalletAmount();
-        double newWalletAmount = currentWalletAmount - totalPrice;
-
-        // Обновляем сумму в кошельке клиента
-        updateWalletAmount(clientId, newWalletAmount);
     }
 
     // Метод для создания клиента

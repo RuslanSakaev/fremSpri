@@ -17,11 +17,6 @@ public class ProductService {
     @Autowired
     private TransactionService transactionService;
 
-    // Метод для получения ID товара из объекта ReservationRequest
-    public Long getProductId(ReservationRequest reservationRequest) {
-        return reservationRequest.getProductId();
-    }
-
     // Метод для проверки наличия товара в резерве
     public boolean checkProductReservation(Long productId, int quantity) {
         Product product = getProductById(productId);

@@ -30,27 +30,6 @@ public class ProductController {
         return ResponseEntity.ok(response.getBody());
     }
 
-    @PostMapping("/{productId}/buy")
-    public ResponseEntity<String> buyProduct(@PathVariable Long productId, @RequestParam Long clientId, @RequestParam int quantity) {
-        // Создаем объект ReservationRequest с переданными данными
-        ReservationRequest reservationRequest = new ReservationRequest();
-        reservationRequest.setClientId(clientId);
-        reservationRequest.setProductId(productId);
-        reservationRequest.setQuantity(quantity);
-
-        // Вызываем метод резервирования товара
-        ResponseEntity<String> reserveResponse = reserveProduct(productId, reservationRequest);
-
-        // Проверяем ответ на запрос о резервировании товара
-        if (reserveResponse.getStatusCode() == HttpStatus.OK) {
-            // Резервирование успешно, осуществляем покупку
-            return clientService.processProductPurchase(clientId, reservationRequest);
-        } else {
-            // Резервирование не удалось, возвращаем сообщение об ошибке
-            return ResponseEntity.status(reserveResponse.getStatusCode()).body(reserveResponse.getBody());
-        }
-    }
-
     @PutMapping("/{productId}/release")
     public ResponseEntity<String> releaseProductFromReservation(@PathVariable Long productId, @RequestBody int quantityToRelease) {
         // Отправляем запрос на отмену резервации товара в MicroServReserv
