@@ -1,16 +1,13 @@
 package ru.sakaev.microServReserv.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "product")
 public class Product {
 
-    // Конструкторы, геттеры и сеттеры
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,7 +24,6 @@ public class Product {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "reserved_quantity")
-    private int reservedQuantity; // Количество товара в резерве
-
+    @Column(name = "RESERVED_QUANTITY")
+    private int reservedQuantity;
 }
