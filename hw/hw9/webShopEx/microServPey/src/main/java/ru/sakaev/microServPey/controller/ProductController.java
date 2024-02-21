@@ -38,8 +38,8 @@ public class ProductController {
         reservationRequest.setProductId(productId);
         reservationRequest.setQuantity(quantity);
 
-        // Отправляем запрос на резервирование товара в MicroServReserv
-        ResponseEntity<String> reserveResponse = restTemplate.postForEntity("http://localhost:8083/api/products/" + productId + "/reserve", reservationRequest, String.class);
+        // Вызываем метод резервирования товара
+        ResponseEntity<String> reserveResponse = reserveProduct(productId, reservationRequest);
 
         // Проверяем ответ на запрос о резервировании товара
         if (reserveResponse.getStatusCode() == HttpStatus.OK) {
