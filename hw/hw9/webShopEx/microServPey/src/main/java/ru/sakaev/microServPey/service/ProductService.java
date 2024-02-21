@@ -14,6 +14,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
     @Autowired
     private TransactionService transactionService;
 
@@ -26,19 +27,12 @@ public class ProductService {
     // Метод для завершения покупки товара
     public ResponseEntity<String> completePurchase(Long productId, int quantity, Long clientId) {
         try {
-            // Получаем информацию о товаре
-            Product product = productRepository.findById(productId).orElse(null);
+            Product product = getProductById(productId);
             if (product != null) {
-                // Проверяем доступное количество товара
                 int newQuantity = product.getQuantity() - quantity;
                 if (newQuantity >= 0) {
-                    // Создаем транзакцию оплаты
-                    Transaction transaction = new Transaction(clientId, productId, quantity, product.getPrice());
-                    transactionService.addTransaction(transaction);
-
-                    // Обновляем количество товара после покупки
-                    product.setQuantity(newQuantity);
-                    productRepository.save(product);
+                    createTransaction(clientId, productId, quantity, product.getPrice());
+                    updateProductQuantity(productId, newQuantity);
                     return ResponseEntity.ok("Покупка товара успешно завершена");
                 } else {
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Недостаточно товара для покупки");
@@ -51,11 +45,26 @@ public class ProductService {
         }
     }
 
+    // Метод для создания транзакции оплаты
+    private void createTransaction(Long clientId, Long productId, int quantity, double price) {
+        Transaction transaction = new Transaction(clientId, productId, quantity, price);
+        transactionService.addTransaction(transaction);
+    }
+
+    // Метод для обновления количества товара после покупки
+    private void updateProductQuantity(Long productId, int newQuantity) {
+        Product product = getProductById(productId);
+        product.setQuantity(newQuantity);
+        productRepository.save(product);
+    }
+
+    // Метод для получения цены товара по его ID
     public double getProductPrice(Long productId) {
         Product product = getProductById(productId);
         return product != null ? product.getPrice() : 0.0;
     }
 
+    // Метод для получения товара по его ID
     private Product getProductById(Long productId) {
         return productRepository.findById(productId).orElse(null);
     }

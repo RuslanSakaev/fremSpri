@@ -24,31 +24,27 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    // Метод для обработки запроса на покупку товара клиентом
+    /**
+     * Обрабатывает запрос на покупку товара клиентом.
+     *
+     * @param clientId            ID клиента
+     * @param reservationRequest  информация о заказе товара
+     * @return ResponseEntity со статусом и сообщением о результате покупки
+     */
     public ResponseEntity<String> processProductPurchase(Long clientId, ReservationRequest reservationRequest) {
         logger.info("Обработка покупки товара для ID клиента: {}", clientId);
         try {
-            // Получаем клиента по ID
-            Client client = clientRepository.findById(clientId)
-                    .orElseThrow(ChangeSetPersister.NotFoundException::new);
-
-            // Получаем информацию о товаре из запроса на покупку
+            Client client = getClientById(clientId);
             Long productId = reservationRequest.getProductId();
             int quantity = reservationRequest.getQuantity();
-
-            // Проверяем, доступен ли товар для покупки
-            boolean productReserved = productService.checkProductReservation(productId, quantity);
+            boolean productReserved = checkProductAvailability(productId, quantity);
             if (!productReserved) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Товар с ID " + productId + " не доступен для покупки");
             }
-
-            // Проверяем, достаточно ли средств в кошельке клиента
-            double totalPrice = productService.getProductPrice(productId) * quantity;
+            double totalPrice = calculateTotalPrice(productId, quantity);
             if (client.getWalletAmount() < totalPrice) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Недостаточно средств в кошельке для покупки");
             }
-
-            // Если все проверки пройдены успешно, завершаем покупку товара
             ResponseEntity<String> purchaseResponse = productService.completePurchase(productId, quantity, clientId);
             return ResponseEntity.ok(purchaseResponse.getBody());
         } catch (ChangeSetPersister.NotFoundException e) {
@@ -59,7 +55,40 @@ public class ClientService {
         }
     }
 
-    // Метод для создания клиента
+    /**
+     * Получает клиента по его ID.
+     *
+     * @param clientId ID клиента
+     * @return найденный клиент
+     * @throws ChangeSetPersister.NotFoundException если клиент не найден
+     */
+    private Client getClientById(Long clientId) throws ChangeSetPersister.NotFoundException {
+        return clientRepository.findById(clientId).orElseThrow(ChangeSetPersister.NotFoundException::new);
+    }
+
+    /**
+     * Проверяет доступность товара для покупки.
+     *
+     * @param productId ID товара
+     * @param quantity  количество товара
+     * @return true, если товар доступен для покупки, в противном случае - false
+     */
+    private boolean checkProductAvailability(Long productId, int quantity) {
+        return productService.checkProductReservation(productId, quantity);
+    }
+
+    /**
+     * Вычисляет общую стоимость товара.
+     *
+     * @param productId ID товара
+     * @param quantity  количество товара
+     * @return общая стоимость товара
+     */
+    private double calculateTotalPrice(Long productId, int quantity) {
+        return productService.getProductPrice(productId) * quantity;
+    }
+
+    // Создаём нового клиента
     public Client createClient(String name, double walletAmount) {
         Client client = new Client();
         client.setName(name);
@@ -67,5 +96,4 @@ public class ClientService {
         client.setWalletAmount(walletAmount);
         return clientRepository.save(client);
     }
-
 }

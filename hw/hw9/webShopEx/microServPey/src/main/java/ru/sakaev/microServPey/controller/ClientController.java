@@ -14,11 +14,12 @@ import ru.sakaev.microServPey.service.ClientService;
 @RestController
 @RequestMapping("/api/clients")
 public class ClientController {
-    @Autowired
-    private RestTemplate restTemplate; // Добавление RestTemplate
+    private final ClientService clientService;
 
     @Autowired
-    private ClientService clientService;
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @PostMapping
     public ResponseEntity<Client> createClient(@RequestBody @Valid ClientRequest clientRequest) {
