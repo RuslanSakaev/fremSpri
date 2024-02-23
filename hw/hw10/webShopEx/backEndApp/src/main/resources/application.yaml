@@ -21,3 +21,4 @@ spring:
   #  web:
     #  exposure:
       #  include: metrics,prometheus
+

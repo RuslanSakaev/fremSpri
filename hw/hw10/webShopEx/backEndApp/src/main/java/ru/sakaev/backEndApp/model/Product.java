@@ -20,6 +20,13 @@ public class Product {
     @Column(name = "quantity")
     private int quantity;
 
+    public Product(Long l, String s, String s1, double v, int i) {
+    }
+
+    public Product() {
+
+    }
+
     // Геттеры и сеттеры
 }
 
