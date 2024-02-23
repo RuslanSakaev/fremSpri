@@ -45,7 +45,7 @@ public class ProductService {
             BeanUtils.copyProperties(product, existingProduct, "id"); // Исключаем обновление id
             return productRepository.save(existingProduct);
         } else {
-            throw new RuntimeException("Product not found with id: " + id);
+            throw new RuntimeException("Продукт не найден с id: " + id);
         }
     }
     @Transactional
