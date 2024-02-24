@@ -95,38 +95,6 @@
 			<artifactId>spring-cloud-config-server</artifactId>
 			<version>4.1.0</version>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>ru.sakaev</groupId>
-			<artifactId>backEndApp</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ru.sakaev</groupId>
-			<artifactId>microServPey</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ru.sakaev</groupId>
-			<artifactId>microServReserv</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ru.sakaev</groupId>
-			<artifactId>apiGateway</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ru.sakaev</groupId>
-			<artifactId>eurekaServer</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

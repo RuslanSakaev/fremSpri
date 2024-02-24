@@ -1,24 +1,23 @@
-server:
-  port: 8081
+server: # Настройки сервера
+  port: 8081 # Порт, на котором будет запущен сервер
 
-spring:
-  application:
-    name: storage
+spring: # Настройки Spring Framework
+  application: # Настройки приложения
+    name: storage # Название приложения
 
-  profiles:
-    active: eclient
+  profiles: # Активные профили
+    active: eclient # Активный профиль "eclient"
 
-  jpa:
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
+  jpa: # Настройки JPA
+    generate-ddl: false # Генерация DDL (Data Definition Language) отключена
+    hibernate: # Настройки Hibernate
+      ddl-auto: none # Автоматическое создание и обновление таблиц в базе данных отключено
 
-  config:
-    import: configserver:http://localhost:8888
+  config: # Настройки конфигурации
+    import: configserver:http://localhost:8888 # Импорт конфигурации из удаленного сервера конфигурации по URL "http://localhost:8888"
 
-#management:
- # endpoints:
-  #  web:
-    #  exposure:
-      #  include: metrics,prometheus
-
+#management: # Настройки управления приложением
+#  endpoints: # Конечные точки (endpoints) управления
+#    web: # Веб-конечные точки
+#      exposure: # Настройки доступности
+#        include: metrics,prometheus # Включение конечных точек "metrics" и "prometheus"
