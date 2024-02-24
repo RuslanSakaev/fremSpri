@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS product (
     name VARCHAR(255),
     description VARCHAR(255),
     price FLOAT NOT NULL,
-    quantity INTEGER NOT NULL
+    quantity INTEGER NOT NULL,
+    RESERVED_QUANTITY INTEGER DEFAULT 0
 );
