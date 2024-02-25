@@ -1,0 +1,30 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: eclient
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  config:
+    import: configserver:http://localhost:8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Включение всех эндпоинтов Actuator для доступа извне
+  metrics:
+    export:
+      prometheus:
+        enabled: true # Включение экспорта метрик в Prometheus
+  endpoint:
+    prometheus:
+      enabled: true # Включение эндпоинта Prometheus для Actuator

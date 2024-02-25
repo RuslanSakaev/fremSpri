@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion> <!-- Версия модели POM -->
+
+	<parent> <!-- Определение родительского проекта -->
+		<groupId>org.springframework.boot</groupId> <!-- Группа родительского проекта -->
+		<artifactId>spring-boot-starter-parent</artifactId> <!-- Идентификатор артефакта родительского проекта -->
+		<version>3.2.2</version> <!-- Версия родительского проекта -->
+		<relativePath/> <!-- Путь к родительскому проекту -->
+	</parent>
+
+	<groupId>ru.sakaev</groupId> <!-- Группа проекта -->
+	<artifactId>backEndApp</artifactId> <!-- Идентификатор артефакта проекта -->
+	<version>0.0.1-SNAPSHOT</version> <!-- Версия проекта -->
+	<name>backEndApp</name> <!-- Название проекта -->
+	<description>backEndApp</description> <!-- Описание проекта -->
+
+	<properties> <!-- Свойства проекта -->
+		<java.version>17</java.version> <!-- Версия языка Java -->
+		<spring-cloud.version>2023.0.0</spring-cloud.version> <!-- Версия Spring Cloud -->
+		<liquibase.version>4.25.1</liquibase.version> <!-- Версия Liquibase -->
+		<preliquibase.version>1.5.0</preliquibase.version> <!-- Версия Preliquibase -->
+	</properties>
+
+	<dependencies> <!-- Зависимости проекта -->
+		<!-- Зависимость Spring Boot Starter Actuator для мониторинга приложения-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- Зависимость для регистрации метрик в Prometheus -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-core</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Boot Starter Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Cloud Starter Config -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Cloud Starter Netflix Eureka Client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Boot Starter Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Boot Starter Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Cloud Starter OpenFeign -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<!-- Зависимость Spring Boot DevTools -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<!-- Зависимость PostgreSQL JDBC Driver -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Зависимость Lombok (опциональная) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Зависимость Spring Boot Starter Test (для тестирования) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Зависимость Spring Boot Autoconfigure -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+	</dependencies>
+	<dependencyManagement> <!-- Управление зависимостями -->
+		<dependencies>
+			<!-- Управление версиями зависимостей Spring Cloud -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build> <!-- Настройки сборки проекта -->
+		<plugins> <!-- Плагины сборки -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration> <!-- Конфигурация плагина -->
+					<excludes> <!-- Исключения из плагина -->
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
