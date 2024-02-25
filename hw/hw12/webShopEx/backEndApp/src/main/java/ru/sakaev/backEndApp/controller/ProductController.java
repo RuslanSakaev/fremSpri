@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional; // Импорт
 import org.springframework.ui.Model; // Импорт Model для взаимодействия с интерфейсом пользователя
 import org.springframework.web.bind.annotation.*; // Импорт аннотаций для определения RESTful-конечных точек
 
+import ru.sakaev.backEndApp.configuration.FileWritingIntegration;
 import ru.sakaev.backEndApp.model.Product; // Импорт класса модели Product
 import ru.sakaev.backEndApp.service.ProductService; // Импорт класса ProductService
 
@@ -21,13 +22,15 @@ import io.micrometer.core.instrument.Timer;
 public class ProductController { // Объявление класса ProductController
 
     private final ProductService productService; // Объявление экземпляра ProductService
+    private final FileWritingIntegration.ProductGateway productGateway; // Интерфейс для отправки данных в файл
 
     private final MeterRegistry meterRegistry;
 
     @Autowired
-    public ProductController(ProductService productService, MeterRegistry meterRegistry) {
+    public ProductController(ProductService productService, MeterRegistry meterRegistry, FileWritingIntegration.ProductGateway productGateway) {
         this.productService = productService;
         this.meterRegistry = meterRegistry;
+        this.productGateway = productGateway;
     }
 
     @GetMapping
@@ -40,14 +43,15 @@ public class ProductController { // Объявление класса ProductCon
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}") // Аннотация для обработки HTTP-запросов типа GET с динамическим путевым переменным
-    @Transactional(readOnly = true) // Аннотация, определяющая транзакционное поведение метода
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) { // Метод для получения продукта по ID
-        Product product = productService.getProductById(id); // Вызов сервиса для получения продукта по ID
-        if (product != null) { // Если продукт существует
-            return new ResponseEntity<>(product, HttpStatus.OK); // Возврат продукта с HTTP-статусом OK
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Возврат HTTP-статуса NOT_FOUND, если продукт не существует
+    @GetMapping("/{id}") // Обработчик GET запроса для получения продукта по ID
+    @Transactional(readOnly = true) // Транзакционное поведение метода только для чтения
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) { // Метод получения продукта по ID
+        Product product = productService.getProductById(id); // Получение продукта по ID через сервис
+        if (product != null) { // Если продукт найден
+            productGateway.writeToFile("GET", "/api/products/" + id, product.toString()); // Запись данных о запросе в файл
+            return new ResponseEntity<>(product, HttpStatus.OK); // Возвращаем продукт с HTTP-статусом ОК
+        } else { // Если продукт не найден
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Возвращаем HTTP-статус NOT FOUND
         }
     }
 
@@ -55,24 +59,28 @@ public class ProductController { // Объявление класса ProductCon
     @Transactional // Аннотация, определяющая транзакционное поведение метода
     @ResponseStatus(HttpStatus.CREATED) // Аннотация, указывающая код состояния HTTP для успешного создания
     public Product createProduct(@RequestBody Product product) { // Метод для создания нового продукта
+        // Отправка данных о запросе в файл
+        productGateway.writeToFile("POST", "/api/products/create", product.toString());
         return productService.createProduct(product); // Вызов сервиса для создания нового продукта
     }
 
-    @PutMapping("/{id}") // Аннотация для обработки HTTP-запросов типа PUT для обновления существующего ресурса
-    @Transactional // Аннотация, определяющая транзакционное поведение метода
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) { // Метод для обновления существующего продукта
-        Product updatedProduct = productService.updateProduct(id, product); // Вызов сервиса для обновления продукта
+    @PutMapping("/{id}") // Обработчик PUT запроса для обновления существующего продукта
+    @Transactional // Транзакционное поведение метода
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) { // Метод обновления продукта
+        productGateway.writeToFile("PUT", "/api/products/" + id, product.toString()); // Запись данных о запросе в файл
+        Product updatedProduct = productService.updateProduct(id, product); // Обновление продукта через сервис
         if (updatedProduct != null) { // Если продукт успешно обновлен
-            return new ResponseEntity<>(updatedProduct, HttpStatus.OK); // Возврат обновленного продукта с HTTP-статусом OK
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Возврат HTTP-статуса NOT_FOUND, если продукт не существует
+            return new ResponseEntity<>(updatedProduct, HttpStatus.OK); // Возвращаем обновленный продукт с HTTP-статусом ОК
+        } else { // Если продукт не найден
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Возвращаем HTTP-статус NOT FOUND
         }
     }
 
-    @DeleteMapping("/{id}") // Аннотация для обработки HTTP-запросов типа DELETE для удаления существующего ресурса
-    @Transactional // Аннотация, определяющая транзакционное поведение метода
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) { // Метод для удаления продукта
-        productService.deleteProduct(id); // Вызов сервиса для удаления продукта
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Возврат HTTP-статуса NO_CONTENT, указывающего на успешное удаление
+    @DeleteMapping("/{id}") // Обработчик DELETE запроса для удаления продукта по ID
+    @Transactional // Транзакционное поведение метода
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) { // Метод удаления продукта
+        productGateway.writeToFile("DELETE", "/api/products/" + id, ""); // Запись данных о запросе в файл
+        productService.deleteProduct(id); // Удаление продукта через сервис
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Возвращаем HTTP-статус NO CONTENT
     }
 }

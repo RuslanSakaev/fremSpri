@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import ru.sakaev.backEndApp.configuration.FileWritingIntegration;
 import ru.sakaev.backEndApp.model.Product;
 import ru.sakaev.backEndApp.model.ProductTest;
 import ru.sakaev.backEndApp.service.ProductService;
@@ -30,9 +31,12 @@ public class ProductControllerTest {
     @Mock
     private MeterRegistry meterRegistry;
 
+    @Mock
+    private FileWritingIntegration.ProductGateway productGateway;
+
     @BeforeEach
     public void setup() {
-        ProductController productController = new ProductController(productService, meterRegistry);
+        ProductController productController = new ProductController(productService, meterRegistry, productGateway);
         mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
     }
 

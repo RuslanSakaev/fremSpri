@@ -1,0 +1,1 @@
+Product(id=null, name= телефон, description=null, price=99.99, quantity=10)
