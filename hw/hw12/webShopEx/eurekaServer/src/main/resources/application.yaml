@@ -1,0 +1,28 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eserver
+  config:
+    import: configserver:http://localhost:8888
+  profiles:
+    active: default
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Включение всех эндпоинтов Actuator для доступа извне
+  metrics:
+    export:
+      prometheus:
+        enabled: true # Включение экспорта метрик в Prometheus
+  endpoint:
+    prometheus:
+      enabled: true # Включение эндпоинта Prometheus для Actuator

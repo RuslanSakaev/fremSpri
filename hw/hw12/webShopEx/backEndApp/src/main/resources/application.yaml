@@ -1,0 +1,30 @@
+server: # Настройки сервера
+  port: 8081 # Порт, на котором будет запущен сервер
+
+spring: # Настройки Spring Framework
+  application: # Настройки приложения
+    name: backEndApp # Название приложения
+
+  profiles: # Активные профили
+    active: eclient # Активный профиль "eclient"
+
+  jpa: # Настройки JPA
+    generate-ddl: false # Генерация DDL (Data Definition Language) отключена
+    hibernate: # Настройки Hibernate
+      ddl-auto: none # Автоматическое создание и обновление таблиц в базе данных отключено
+
+  config: # Настройки конфигурации
+    import: configserver:http://localhost:8888 # Импорт конфигурации из удаленного сервера конфигурации по URL "http://localhost:8888"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Включение всех эндпоинтов Actuator для доступа извне
+  metrics:
+    export:
+      prometheus:
+        enabled: true # Включение экспорта метрик в Prometheus
+  endpoint:
+    prometheus:
+      enabled: true # Включение эндпоинта Prometheus для Actuator
