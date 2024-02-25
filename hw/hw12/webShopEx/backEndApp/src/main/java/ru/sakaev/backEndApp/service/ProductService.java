@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired; // Импорт �
 import org.springframework.stereotype.Service; // Импорт аннотации Service из Spring Framework
 import org.springframework.transaction.annotation.Transactional; // Импорт аннотации Transactional из Spring Framework
 import ru.sakaev.backEndApp.model.Product; // Импорт класса Product
+import ru.sakaev.backEndApp.observer.ProductQuantityPublisher;
+import ru.sakaev.backEndApp.publisher.Publisher;
 import ru.sakaev.backEndApp.repository.ProductRepository; // Импорт интерфейса ProductRepository
 
 import java.util.List; // Импорт класса List
@@ -16,11 +18,13 @@ import java.util.List; // Импорт класса List
 public class ProductService { // Объявление класса ProductService
 
     private final ProductRepository productRepository; // Объявление экземпляра ProductRepository
+    private final ProductQuantityPublisher publisher;
     private final Logger logger = LoggerFactory.getLogger(ProductService.class); // Создание логгера
 
     @Autowired // Аннотация для автоматического внедрения зависимости
-    public ProductService(ProductRepository productRepository) { // Конструктор с параметром для внедрения ProductRepository
+    public ProductService(ProductRepository productRepository, Publisher publisher) { // Конструктор с параметром для внедрения ProductRepository
         this.productRepository = productRepository; // Инициализация экземпляра ProductRepository
+        this.publisher = (ProductQuantityPublisher) publisher;
     }
 
     @Transactional(readOnly = true) // Аннотация, определяющая транзакционное поведение метода
@@ -40,8 +44,11 @@ public class ProductService { // Объявление класса ProductServic
     }
 
     @Transactional // Аннотация, определяющая транзакционное поведение метода
-    public Product updateProduct(Long id, Product product) { // Метод для обновления существующего продукта
+    public Product updateProduct(Long id, Product product, int newQuantity) { // Метод для обновления существующего продукта
         Product existingProduct = getProductById(id); // Получение существующего продукта по его ID
+        product.setQuantity(newQuantity);
+        productRepository.save(product);
+        publisher.setQuantity(newQuantity);
         if (existingProduct != null) { // Если продукт существует
             BeanUtils.copyProperties(product, existingProduct, "id"); // Копирование свойств из переданного продукта в существующий, исключая поле "id"
             return productRepository.save(existingProduct); // Сохранение обновленного продукта в репозитории
