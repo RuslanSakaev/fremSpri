@@ -1,0 +1,26 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: github-config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/RuslanSakaev/config.git
+          basedir: file://c:/tmp/shop
+          default-label: main
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Включение всех эндпоинтов Actuator для доступа извне
+  metrics:
+    export:
+      prometheus:
+        enabled: true # Включение экспорта метрик в Prometheus
+  endpoint:
+    prometheus:
+      enabled: true # Включение эндпоинта Prometheus для Actuator
